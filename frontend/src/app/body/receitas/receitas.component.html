@@ -1,0 +1,32 @@
+<br>
+<div class="container">
+  <h2 [hidden]="receitas && receitas.length">Não tem qualquer receita no seu livro :(</h2>
+  <br>
+  <button routerLink="/criarReceita" routerLinkActive="active" class="btn btn-primary" type="button">Adicionar</button>
+  <!-- <button *ngIf="!hideButton" routerLink="/criarReceita" routerLinkActive="active" class="btn btn-primary" type="button" (click)="hideAddButton()">Adicionar</button> -->
+</div>
+<br>
+<div class="container">
+  <div *ngFor="let receita of receitas;let i = index;">
+    <div class="card" style="margin-top: 5px;">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-10">
+            {{receita.nome}}
+          </div>
+          <div class="col-md-2 float-right">
+            <button type="button" routerLink="/receita/{{receita.id}}" routerLinkActive="active" class="btn btn-outline-primary">
+              <i class="bi bi-eye"></i>
+            </button>
+            <button type="button" class="btn btn-outline-success margin-l-5px">
+              <i class="bi bi-pencil"></i>
+            </button>
+            <button type="button" class="btn btn-outline-danger margin-l-5px">
+              <i class="bi bi-trash"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
