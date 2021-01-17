@@ -5,12 +5,12 @@ import { Receita } from '../receita/models/receita.model';
   providedIn: 'root'
 })
 export class CriarReceitaService {
-  private id = 0;
+  //private id = 0;
   private receitas: Receita[];
 
   constructor() { }
 
-  setReceitaId(id) {
+/*   setReceitaId(id) {
     this.id = id;
   }
 
@@ -18,7 +18,7 @@ export class CriarReceitaService {
     let temp = this.id;
     //this.clearData();
     return temp;
-  }
+  } */
 
   setReceitas(receitas) {
     this.receitas = receitas;
@@ -31,7 +31,7 @@ export class CriarReceitaService {
   }
 
   clearData() {
-    this.id = undefined;
+    //this.id = undefined;
     this.receitas = undefined;
   }
 

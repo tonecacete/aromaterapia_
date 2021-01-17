@@ -14,7 +14,10 @@ export class ReceitasComponent implements OnInit,OnChanges, DoCheck {
   receita: Receita;
   id_delete;
 
-  constructor(private receitasService: CriarReceitaService, private backendService: BackendService) { }
+  constructor(
+    private receitasService: CriarReceitaService,
+    private backendService: BackendService
+    ) { }
 
   ngOnInit() {
     this.backendService.getReceitas().subscribe((data: any[])=>{
@@ -32,7 +35,7 @@ export class ReceitasComponent implements OnInit,OnChanges, DoCheck {
   }
 
   apagarReceita(){
-    this.backendService.deleteReceitas(this.id_delete);
+    this.backendService.deleteReceita(this.id_delete);
     this.receitas = this.receitas.filter(rec => rec.id !== this.id_delete);
     this.openModalDelete.nativeElement.click();
   }
