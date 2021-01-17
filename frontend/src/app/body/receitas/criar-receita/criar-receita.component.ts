@@ -28,8 +28,8 @@ export class CriarReceitaComponent implements OnInit, OnChanges {
     ) { }
 
   ngOnInit() {
-    this.id = this.receitasService.getReceitaId();
-    this.receitas = this.receitasService.getReceitas();
+    /* this.id = this.receitasService.getReceitaId();
+    this.receitas = this.receitasService.getReceitas(); */
 /*     this.route.queryParams.subscribe(params => {
       this.nome = params['nome'];
     }); */

@@ -12,6 +12,9 @@ import { LoginService } from './login/services/login.service';
 import { CriarReceitaService } from './body/receitas/services/criar-receita.service';
 import { ReceitaComponent } from './body/receitas/receita/receita.component';
 
+import { HttpClientModule } from '@angular/common/http';
+import { EditarReceitaComponent } from './body/receitas/editar-receita/editar-receita.component';
+
 @NgModule({
   declarations: [			
     AppComponent,
@@ -20,12 +23,14 @@ import { ReceitaComponent } from './body/receitas/receita/receita.component';
       ReceitasComponent,
       ReceitaComponent,
       CriarReceitaComponent,
+      EditarReceitaComponent,
       LoginComponent
    ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [LoginService, CriarReceitaService],
   bootstrap: [AppComponent]

@@ -9,7 +9,7 @@ const routes: Routes = [
   { path: 'receitas', component: ReceitasComponent },
   { path: 'receita/:id', component: ReceitaComponent },
   { path: 'criarReceita', component: CriarReceitaComponent },
-  { path: 'editarReceita', component: EditarReceitaComponent },
+  { path: 'editarReceita/:id', component: EditarReceitaComponent },
   {path: '', redirectTo: '/receitas', pathMatch: 'full'}
 ];
 

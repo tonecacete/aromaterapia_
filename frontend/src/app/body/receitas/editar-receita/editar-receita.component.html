@@ -1,3 +1,53 @@
-<p>
-  editar-receita works!
-</p>
+
+<br>
+<div class="container">
+  <div class="card">
+    <div class="card-header">
+      <h2>{{nome}}</h2>
+    </div>
+    <div class="card-body">
+      <!-- <form> -->
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="nome">Nome</label>
+            <input type="text" class="form-control" id="nome" [(ngModel)]="nome">
+          </div>
+          <div class="form-group col-md-2">
+            <label for="idadeMin">Idade</label>
+            <input type="number" class="form-control" id="idadeMin" [(ngModel)]="idadeMin">
+          </div>
+          <div class="form-group col-md-4">
+            <label for="tipo">Tipo</label>
+            <select id="tipo" class="form-control" [(ngModel)]="tipo">
+              <option selected>Inalação</option>
+              <option>Difusão</option>
+              <option>Atópico</option>
+            </select>
+          </div>
+          <div class="form-group col-md-3">
+            <label for="funcao">Funções</label>
+            <input type="text" class="form-control" id="funcao" [(ngModel)]="funcao">
+          </div>
+          <div class="form-group col-md-9">
+            <!-- <p>aaaaa</p> -->
+          </div>
+          <div class="form-group col-md-12">
+            <label for="descricao">Receita</label>
+            <textarea class="form-control" id="descricao" rows="3" [(ngModel)]="receitaDesc"></textarea>
+          </div>
+          <div class="form-group col-md-12">
+            <label for="aplicacao">Aplicação</label>
+            <textarea class="form-control" id="aplicacao" rows="3" [(ngModel)]="aplicacao"></textarea>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-auto">
+            <button type="button" class="btn btn-outline-success" (click)="editReceita()">Guardar</button>
+            <button type="button" routerLink="../../receita/{{id}}" routerLinkActive="active" class="btn btn-outline-danger margin-l-5px">Cancelar</button>
+            <button type="button" routerLink="/receitas" routerLinkActive="active" type="button" class="btn btn-outline-secondary margin-l-5px">Voltar</button>
+          </div>
+        </div>
+      <!-- </form> -->
+    </div>
+  </div>
+</div>

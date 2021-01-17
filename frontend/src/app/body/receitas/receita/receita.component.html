@@ -42,7 +42,12 @@
             <!-- <textarea class="form-control" id="descricao" rows="3" [(ngModel)]="aplicacao" disabled></textarea> -->
           </div>
         </div>
-        <button type="button" routerLink="/receitas" type="button" class="btn btn-outline-secondary float-right">Voltar</button>
+        <div class="row">
+          <div class="col-md-auto">
+            <button type="button" routerLink="../../editarReceita/{{id}}" routerLinkActive="active" class="btn btn-outline-success">Editar</button>
+            <button type="button" routerLink="/receitas" routerLinkActive="active" type="button" class="btn btn-outline-secondary margin-l-5px">Voltar</button>
+          </div>
+        </div>
       <!-- </form> -->
     </div>
   </div>
