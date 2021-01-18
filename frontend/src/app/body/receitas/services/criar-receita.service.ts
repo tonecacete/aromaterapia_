@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { of, Observable } from 'rxjs';
+import { delay } from 'rxjs/internal/operators';
 import { Receita } from '../receita/models/receita.model';
 
 @Injectable({
@@ -10,21 +12,18 @@ export class CriarReceitaService {
 
   constructor() { }
 
-/*   setReceitaId(id) {
-    this.id = id;
-  }
-
-  getReceitaId() {
-    let temp = this.id;
-    //this.clearData();
-    return temp;
-  } */
-
   setReceitas(receitas) {
     this.receitas = receitas;
   }
 
-  getReceitas() {
+  getReceitas(): Observable<any>  {
+    let temp = this.receitas;
+    //this.clearData();
+    //return temp;
+    return of(temp).pipe(delay(300));
+  }
+
+  getReceitas2(){
     let temp = this.receitas;
     //this.clearData();
     return temp;

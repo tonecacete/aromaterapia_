@@ -6,22 +6,30 @@
   <!-- <button *ngIf="!hideButton" routerLink="/criarReceita" routerLinkActive="active" class="btn btn-primary" type="button" (click)="hideAddButton()">Adicionar</button> -->
 </div>
 <br>
-<div class="container">
+<div *ngIf="filtersLoaded | async" class="container">
   <div *ngFor="let receita of receitas;let i = index;">
     <div class="card" style="margin-top: 5px;">
       <div class="card-body">
         <div class="row">
-          <div class="col-md-10">
-            {{receita.nome}}
+          <div class="col-md-5 align-self-center">
+            <h5>
+              {{receita.nome}}
+            </h5>
+          </div>
+          <div class="col-md-5 align-self-center">
+            <h6>
+
+              {{receita.tipo}}
+            </h6>
           </div>
           <div class="col-md-2 float-right">
-            <button type="button" routerLink="/receita/{{receita.id}}" routerLinkActive="active" class="btn btn-outline-primary">
+            <button type="button" routerLink="/receita/{{receita.id}}" routerLinkActive="active" class="btn btn-outline-primary btn-sm">
               <i class="bi bi-eye"></i>
             </button>
-            <button type="button" routerLink="/editarReceita/{{receita.id}}" routerLinkActive="active" class="btn btn-outline-success margin-l-5px">
+            <button type="button" routerLink="/editarReceita/{{receita.id}}" routerLinkActive="active" class="btn btn-outline-success btn-sm margin-l-5px">
               <i class="bi bi-pencil"></i>
             </button>
-            <button type="button" id="openModalDelete" #openModalDelete data-toggle="modal" data-target="#delete-modal" class="btn btn-outline-danger margin-l-5px" (click)="setIdToDelete(receita.id)">
+            <button type="button" id="openModalDelete" #openModalDelete data-toggle="modal" data-target="#delete-modal" class="btn btn-outline-danger btn-sm margin-l-5px" (click)="setIdToDelete(receita.id)">
               <i class="bi bi-trash"></i>
             </button>
           </div>

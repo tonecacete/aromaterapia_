@@ -29,9 +29,9 @@ export class ReceitaComponent implements OnInit {
       //console.log(params.get('id'));
       rId = params.get('id');
     });
-
-    if (this.receitasService.getReceitas()) {
-      let receita = this.receitasService.getReceitas().find(x => x.id == rId);
+    
+    if (this.receitasService.getReceitas2()) {
+      let receita = this.receitasService.getReceitas2().find(x => x.id == rId);
       this.id = rId;
       this.nome = receita.nome
       this.idadeMin = receita.idadeMin

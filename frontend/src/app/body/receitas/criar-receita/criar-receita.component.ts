@@ -1,3 +1,4 @@
+import { Funcao } from './../receita/models/funcao.model';
 import { Receita } from '../receita/models/receita.model';
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
@@ -12,14 +13,19 @@ import { BackendService } from '../services/backend.service';
 export class CriarReceitaComponent implements OnInit, OnChanges {
   //@Input() receitas: Receita[];
   @Input() receita: Receita;
+  //@Input() receitas: Receita[];
+  receitas:any;
   nome:string;
   idadeMin: number;
   tipo:string;
-  funcao: string[];
+  //funcao: string[];
+  funcao: Funcao;
   receitaDesc: string;
   aplicacao:string;
+  funcoes;
+  funcoesReceita: string[] = [];
+  newFuncao = false;
 
-  receitas: Receita[];
   //id;
   
   constructor(
@@ -31,7 +37,9 @@ export class CriarReceitaComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     //this.id = this.receitasService.getReceitaId();
-    this.receitas = this.receitasService.getReceitas();
+    //this.receitas = this.receitasService.getReceitas();
+    this.backendService.getFuncoes().subscribe(funcoes => this.funcoes = funcoes);
+    this.backendService.getReceitas().subscribe(receitas => this.receitas = receitas);
 /*     this.route.queryParams.subscribe(params => {
       this.nome = params['nome'];
     }); */
@@ -48,7 +56,7 @@ export class CriarReceitaComponent implements OnInit, OnChanges {
       this.nome,
       this.idadeMin,
       this.tipo,
-      [],
+      this.funcoesReceita,
       this.receitaDesc,
       this.aplicacao
     )
@@ -56,11 +64,35 @@ export class CriarReceitaComponent implements OnInit, OnChanges {
       this.receitas = [];
     }
     this.receitas.push(this.receita);
+    this.receitasService.setReceitas(this.receitas);
     this.backendService.addReceita(this.receita);
     //this.receitasService.setReceitaId(this.receita.id);
-    this.receitasService.setReceitas(this.receitas);
     this.router.navigate(['/receitas'], { relativeTo: this.route });
     
+  }
+
+  setFuncao(event){
+    console.log(event);
+    const index: number = this.funcoesReceita.indexOf(event.target.defaultValue);
+    if (index == -1) {
+      this.funcoesReceita.push(event.target.defaultValue)
+    }else{
+      this.funcoesReceita.splice(index, 1);
+    }
+  }
+
+  addFuncao(){
+    this.newFuncao = true;
+  }
+
+  newFuncaoClick(funcao,newFuncao){
+    if (newFuncao) {
+      this.funcoes.push({"funcao": funcao});
+      this.funcao = new Funcao(funcao);
+      this.backendService.addFuncoes(this.funcao);
+      this.funcao = undefined;
+    }
+    this.addFuncao();
   }
 
 }

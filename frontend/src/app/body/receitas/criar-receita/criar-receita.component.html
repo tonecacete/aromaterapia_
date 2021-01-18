@@ -1,4 +1,3 @@
-
 <br>
 <div class="container">
   <div class="card">
@@ -7,41 +6,59 @@
     </div>
     <div class="card-body">
       <!-- <form> -->
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <label for="nome">Nome</label>
-            <input type="text" class="form-control" id="nome" [(ngModel)]="nome">
-          </div>
-          <div class="form-group col-md-2">
-            <label for="idadeMin">Idade</label>
-            <input type="number" class="form-control" id="idadeMin" [(ngModel)]="idadeMin">
-          </div>
-          <div class="form-group col-md-4">
-            <label for="tipo">Tipo</label>
-            <select id="tipo" class="form-control" [(ngModel)]="tipo">
-              <option selected>Inalação</option>
-              <option>Difusão</option>
-              <option>Atópico</option>
-            </select>
-          </div>
-          <div class="form-group col-md-3">
-            <label for="funcao">Funções</label>
-            <input type="text" class="form-control" id="funcao" [(ngModel)]="funcao">
-          </div>
-          <div class="form-group col-md-9">
-            <!-- <p>aaaaa</p> -->
-          </div>
-          <div class="form-group col-md-12">
-            <label for="descricao">Receita</label>
-            <textarea class="form-control" id="descricao" rows="3" [(ngModel)]="receitaDesc"></textarea>
-          </div>
-          <div class="form-group col-md-12">
-            <label for="aplicacao">Aplicação</label>
-            <textarea class="form-control" id="aplicacao" rows="3" [(ngModel)]="aplicacao"></textarea>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="nome" class="font-weight-bold">Nome</label>
+          <input type="text" class="form-control" id="nome" [(ngModel)]="nome">
+        </div>
+        <div class="form-group col-md-2">
+          <label for="idadeMin" class="font-weight-bold">Idade</label>
+          <input type="number" class="form-control" id="idadeMin" [(ngModel)]="idadeMin">
+        </div>
+        <div class="form-group col-md-4">
+          <label for="tipo" class="font-weight-bold">Tipo</label>
+          <select id="tipo" class="form-control" [(ngModel)]="tipo">
+            <option selected>Inalação</option>
+            <option>Difusão</option>
+            <option>Atópico</option>
+          </select>
+        </div>
+        <div class="form-group col-md-12">
+          <label for="funcao" class="font-weight-bold">Funções</label>
+          <!-- <input type="text" class="form-control" id="funcao" [(ngModel)]="funcao"> -->
+          <div class="row">
+            <div class="col-sm-9">
+              <div class="btn-group-toggle" data-toggle="buttons">
+                <label *ngFor="let funcao of funcoes" class="btn btn-outline-secondary btn-sm margin-l-5px">
+                  <input type="checkbox" (change)="setFuncao($event)" value="{{funcao.funcao}}" unchecked>{{funcao.funcao}}
+                </label>
+                <!-- <i class="bi bi-plus-square"></i> -->
+              </div>
+            </div>
+            <div class="col-sm-2">
+              <input type="text" *ngIf="newFuncao" class="form-control float-right" id="nome" [(ngModel)]="funcao">
+            </div>
+            <div class="col-sm-1 justify-content-end">
+              <button class="btn btn-outline-success btn-sm" style="margin-top: 3px;" type="button" (click)="newFuncaoClick(funcao,newFuncao)">+</button>
+            </div>
           </div>
         </div>
-        <button type="button" class="btn btn-success" (click)="addReceita()">Adicionar</button>
-      <!-- </form> -->
+        <div class="form-group col-md-12">
+          <label for="descricao" class="font-weight-bold">Receita</label>
+          <textarea class="form-control" id="descricao" rows="3" [(ngModel)]="receitaDesc"></textarea>
+        </div>
+        <div class="form-group col-md-12">
+          <label for="aplicacao" class="font-weight-bold">Aplicação</label>
+          <textarea class="form-control" id="aplicacao" rows="3" [(ngModel)]="aplicacao"></textarea>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-auto">
+          <button type="button" class="btn btn-success" (click)="addReceita()">Adicionar</button>
+          <button type="button" routerLink="/receitas" routerLinkActive="active" type="button"
+            class="btn btn-outline-secondary margin-l-5px">Voltar</button>
+        </div>
+      </div>
     </div>
   </div>
 </div>

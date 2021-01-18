@@ -10,9 +10,12 @@ import { CriarReceitaService } from './services/criar-receita.service';
 })
 export class ReceitasComponent implements OnInit,OnChanges, DoCheck {
   @ViewChild('openModalDelete') openModalDelete:ElementRef;
-  receitas: Receita[];
+  receitas;
   receita: Receita;
   id_delete;
+  data_load = false;
+
+  filtersLoaded: Promise<boolean>;
 
   constructor(
     private receitasService: CriarReceitaService,
@@ -20,18 +23,21 @@ export class ReceitasComponent implements OnInit,OnChanges, DoCheck {
     ) { }
 
   ngOnInit() {
+    this.data_load = false;
     this.backendService.getReceitas().subscribe((data: any[])=>{
       this.receitas = data;
+      this.data_load = true;
       this.receitasService.setReceitas(this.receitas);
+      this.filtersLoaded = Promise.resolve(true);
     })
   }
 
   ngOnChanges(){
-    console.log("mudou")
+    console.log("mudaram cenas")
   }
 
   ngDoCheck(){
-    //this.receitas = this.receitasService.getReceitas();
+    
   }
 
   apagarReceita(){

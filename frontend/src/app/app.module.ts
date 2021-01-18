@@ -14,6 +14,7 @@ import { ReceitaComponent } from './body/receitas/receita/receita.component';
 
 import { HttpClientModule } from '@angular/common/http';
 import { EditarReceitaComponent } from './body/receitas/editar-receita/editar-receita.component';
+import { BackendService } from './body/receitas/services/backend.service';
 
 @NgModule({
   declarations: [			
@@ -32,7 +33,7 @@ import { EditarReceitaComponent } from './body/receitas/editar-receita/editar-re
     FormsModule,
     HttpClientModule
   ],
-  providers: [LoginService, CriarReceitaService],
+  providers: [LoginService, CriarReceitaService, BackendService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

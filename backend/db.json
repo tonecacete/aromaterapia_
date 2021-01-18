@@ -1,58 +1,77 @@
 {
   "receitas": [
     {
-      "nome": "coisas 3",
-      "idadeMin": "69",
-      "tipo": "teste3",
-      "funcao": "teste funcao3",
-      "receitaDesc": "receita3",
-      "aplicacao": "codias3",
-      "id": 2
+      "id": 79,
+      "nome": "1233333555",
+      "idadeMin": 11111,
+      "tipo": "Difusão",
+      "funcao": [
+        "coiso"
+      ],
+      "receitaDesc": "1111",
+      "aplicacao": "11111"
+    },
+    {
+      "id": 82,
+      "nome": "32166666",
+      "idadeMin": 1,
+      "tipo": "Difusão",
+      "funcao": [],
+      "receitaDesc": "1212",
+      "aplicacao": "12121"
+    },
+    {
+      "id": 83,
+      "nome": "453555",
+      "idadeMin": 1,
+      "tipo": "Atópico",
+      "funcao": [],
+      "receitaDesc": "123",
+      "aplicacao": "123"
+    },
+    {
+      "id": 84,
+      "nome": "1123",
+      "funcao": []
+    },
+    {
+      "id": 85,
+      "funcao": []
+    },
+    {
+      "id": 86,
+      "nome": "asdasasaaaaaaaa123",
+      "funcao": [
+        "Tosse",
+        "Tosse 2",
+        "Toss 1e"
+      ]
+    }
+  ],
+  "funcoes": [
+    {
+      "id": 1,
+      "funcao": "Tosse"
+    },
+    {
+      "id": 2,
+      "funcao": "Tosse 1"
     },
     {
       "id": 3,
-      "nome": "teste nome",
-      "idadeMin": 69,
-      "tipo": "teste tipo",
-      "funcao": "teste funcao",
-      "receitaDesc": "teste receitaDesc",
-      "aplicacao": "teste aplicacao"
+      "funcao": "Tosse 2"
     },
     {
-      "nome": "coisas 3",
-      "idadeMin": "69",
-      "tipo": "teste3",
-      "funcao": "teste funcao3",
-      "receitaDesc": "receita3",
-      "aplicacao": "codias3",
-      "id": 6
+      "id": 4,
+      "funcao": "Tosse 3"
     },
     {
-      "id": 79,
-      "nome": "Alice Maria Pinto Pereira",
-      "idadeMin": 1,
-      "tipo": "Difusão",
-      "funcao": [],
-      "receitaDesc": "1",
-      "aplicacao": "1"
+      "id": 5,
+      "funcao": "Toss 1e"
     },
     {
-      "id": 80,
-      "nome": "qqqqq",
-      "idadeMin": 1,
-      "tipo": "Difusão",
-      "funcao": [],
-      "receitaDesc": "1",
-      "aplicacao": "1"
-    },
-    {
-      "id": 81,
-      "nome": "q asdasdas 1231231",
-      "idadeMin": 1,
-      "tipo": "Inalação",
-      "funcao": [],
-      "receitaDesc": "1",
-      "aplicacao": "1"
+      "id": 6,
+      "funcao": "Tosse 121"
     }
   ]
 }
