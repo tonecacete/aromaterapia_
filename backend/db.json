@@ -2,76 +2,85 @@
   "receitas": [
     {
       "id": 79,
-      "nome": "1233333555",
+      "nome": "teste master",
       "idadeMin": 11111,
       "tipo": "Difusão",
-      "funcao": [
-        "coiso"
+      "funcoes": [
+        {
+          "funcao": "Febre",
+          "check": true
+        },
+        {
+          "funcao": "Congestão Nasal",
+          "check": true
+        },
+        {
+          "funcao": "Dor de Cabeça",
+          "check": true
+        }
       ],
       "receitaDesc": "1111",
       "aplicacao": "11111"
     },
     {
-      "id": 82,
-      "nome": "32166666",
+      "id": 80,
+      "nome": "fu",
       "idadeMin": 1,
-      "tipo": "Difusão",
-      "funcao": [],
-      "receitaDesc": "1212",
-      "aplicacao": "12121"
+      "tipo": "Inalação",
+      "funcoes": [
+        {
+          "funcao": "Tosse",
+          "check": true
+        }
+      ],
+      "receitaDesc": "qwwqe",
+      "aplicacao": "qweqe"
     },
     {
-      "id": 83,
-      "nome": "453555",
-      "idadeMin": 1,
-      "tipo": "Atópico",
-      "funcao": [],
-      "receitaDesc": "123",
-      "aplicacao": "123"
-    },
-    {
-      "id": 84,
-      "nome": "1123",
-      "funcao": []
-    },
-    {
-      "id": 85,
-      "funcao": []
-    },
-    {
-      "id": 86,
-      "nome": "asdasasaaaaaaaa123",
-      "funcao": [
-        "Tosse",
-        "Tosse 2",
-        "Toss 1e"
-      ]
+      "id": 81,
+      "nome": "fu2",
+      "idadeMin": 21,
+      "tipo": "Inalação",
+      "funcoes": [],
+      "receitaDesc": "awewq",
+      "aplicacao": "qweq"
     }
   ],
   "funcoes": [
     {
       "id": 1,
-      "funcao": "Tosse"
+      "funcao": "Tosse",
+      "check": false
     },
     {
       "id": 2,
-      "funcao": "Tosse 1"
+      "funcao": "Febre",
+      "check": false
     },
     {
       "id": 3,
-      "funcao": "Tosse 2"
+      "funcao": "Congestão Nasal",
+      "check": false
     },
     {
       "id": 4,
-      "funcao": "Tosse 3"
+      "funcao": "Dor de Cabeça",
+      "check": false
     },
     {
       "id": 5,
-      "funcao": "Toss 1e"
+      "funcao": "Dor Muscular",
+      "check": false
     },
     {
       "id": 6,
-      "funcao": "Tosse 121"
+      "funcao": "Dor de Barriga",
+      "check": 0
+    },
+    {
+      "funcao": "Dores Menstruais",
+      "check": false,
+      "id": 7
     }
   ]
 }

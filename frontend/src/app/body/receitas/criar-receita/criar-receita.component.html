@@ -5,7 +5,6 @@
       <h2>Nova Receita</h2>
     </div>
     <div class="card-body">
-      <!-- <form> -->
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="nome" class="font-weight-bold">Nome</label>
@@ -25,18 +24,16 @@
         </div>
         <div class="form-group col-md-12">
           <label for="funcao" class="font-weight-bold">Funções</label>
-          <!-- <input type="text" class="form-control" id="funcao" [(ngModel)]="funcao"> -->
           <div class="row">
             <div class="col-sm-9">
               <div class="btn-group-toggle" data-toggle="buttons">
-                <label *ngFor="let funcao of funcoes" class="btn btn-outline-secondary btn-sm margin-l-5px">
-                  <input type="checkbox" (change)="setFuncao($event)" value="{{funcao.funcao}}" unchecked>{{funcao.funcao}}
+                <label *ngFor="let funcao of funcoes;let i = index;" class="btn btn-outline-secondary btn-sm margin-l-5px">
+                  <input type="checkbox" id="funcao{{i}}" (change)="setFuncao($event)" value="{{funcao.funcao}}">{{funcao.funcao}}
                 </label>
-                <!-- <i class="bi bi-plus-square"></i> -->
               </div>
             </div>
             <div class="col-sm-2">
-              <input type="text" *ngIf="newFuncao" class="form-control float-right" id="nome" [(ngModel)]="funcao">
+              <input type="text" *ngIf="newFuncao" class="form-control float-right" id="nome" [(ngModel)]="funcao" (keyup.enter)="newFuncaoClick(funcao,newFuncao)">
             </div>
             <div class="col-sm-1 justify-content-end">
               <button class="btn btn-outline-success btn-sm" style="margin-top: 3px;" type="button" (click)="newFuncaoClick(funcao,newFuncao)">+</button>

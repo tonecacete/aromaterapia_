@@ -11,7 +11,7 @@ import { BackendService } from '../services/backend.service';
   styleUrls: ['./editar-receita.component.scss']
 })
 export class EditarReceitaComponent implements OnInit {
-  @ViewChild('openModalEdit') openModalEdit:ElementRef;
+  @ViewChild('openModalEdit') openModalEdit: ElementRef;
   @Input() receita: Receita;
   //@Input() receitas: Receita[];
   receitas: any;
@@ -19,7 +19,7 @@ export class EditarReceitaComponent implements OnInit {
   idadeMin: number;
   tipo: string;
   funcao: Funcao;
-  funcoes;
+  funcoes: Funcao[];
   receitaDesc: string;
   aplicacao: string;
   newFuncao = false;
@@ -34,35 +34,75 @@ export class EditarReceitaComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    //this.receitasService.getReceitas();
+
     this.route.paramMap.subscribe(params => {
-      //console.log(params.get('id'));
       this.eId = params.get('id');
     });
 
     if (this.receitasService.getReceitas2()) {
       this.receita = this.receitasService.getReceitas2().find(x => x.id == this.eId);
-      //this.backendService.getReceitas().subscribe(products => this.receitas = products);
+      this.backendService.getFuncoes().subscribe((data: any[]) => {
+        this.funcoes = data;
+        for (let i = 0; i < this.receita.funcoes.length; i++) {
+          this.setCheckFun(this.receita.funcoes[i].funcao);
+        }
+      })
       this.id = this.eId;
       this.nome = this.receita.nome
       this.idadeMin = this.receita.idadeMin
       this.tipo = this.receita.tipo
-      this.funcoes = this.receita.funcao
       this.receitaDesc = this.receita.receitaDesc
       this.aplicacao = this.receita.aplicacao
     }
+
+
+
+  }
+  setCheckFun(fun) {
+    if (this.funcoes) {
+      for (let j = 0; j < this.funcoes.length; j++) {
+        if (this.funcoes[j].funcao == fun) {
+          this.funcoes[j].check = true;
+        }
+      }
+    }
+  }
+
+  setFuncao(event) {
+    console.log(event);
+    for (let f of this.funcoes) {
+      if (f.funcao == event.target.defaultValue) {
+        f.check = !f.check;
+      }
+    }
+  }
+
+  ngAfterViewInit() {
+  }
+
+  checkboxCheck(val) {
+    console.log(val);
+
+
   }
 
   editReceita() {
+    let funcoes: Funcao[] = [];
+
     console.log("edit")
-    this.receita.id= this.eId;
+    this.receita.id = this.eId;
     this.receita.nome = this.nome;
     this.receita.idadeMin = this.idadeMin;
     this.receita.tipo = this.tipo;
-    //this.receita.funcao = this.funcao;
+    this.funcoes = this.funcoes.filter(f => f.check == true);
+    for (let f of this.funcoes) {
+      let fu = new Funcao(f.funcao, f.check)
+      funcoes.push(fu);
+    }
+    this.receita.funcoes = funcoes;
     this.receita.receitaDesc = this.receitaDesc;
     this.receita.aplicacao = this.aplicacao;
-    this.backendService.editarReceita(this.receita,this.eId);
+    this.backendService.editarReceita(this.receita, this.eId);
     this.receitas = this.receitasService.getReceitas2().filter(x => x.id !== this.eId);
     this.receitas.push(this.receita);
     this.receitasService.setReceitas(this.receitas);
@@ -70,21 +110,21 @@ export class EditarReceitaComponent implements OnInit {
     this.router.navigate(['/receitas'], { relativeTo: this.route });
   }
 
-  addFuncao(){
+  addFuncao() {
     this.newFuncao = true;
   }
 
-  newFuncaoClick(funcao,newFuncao){
+  newFuncaoClick(funcao, newFuncao) {
     if (newFuncao) {
-      this.funcoes.push({"funcao": funcao});
-      this.funcao = new Funcao(funcao);
+      this.funcoes.push(new Funcao(funcao,false));
+      this.funcao = new Funcao(funcao, false);
       this.backendService.addFuncoes(this.funcao);
       this.funcao = undefined;
     }
     this.addFuncao();
   }
 
-  getSelectedFuncoes(){
+  getSelectedFuncoes() {
 
   }
 

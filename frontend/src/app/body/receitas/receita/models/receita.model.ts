@@ -1,9 +1,10 @@
+import { Funcao } from './funcao.model';
 export class Receita{
     id:number;
     nome:string;
     idadeMin: number;
     tipo:string;
-    funcao: string[];
+    funcoes: Funcao[];
     receitaDesc: string;
     aplicacao:string;
 
@@ -12,7 +13,7 @@ export class Receita{
         nome:string,
         idadeMin:number,
         tipo:string,
-        funcao: string[],
+        funcoes: Funcao[],
         receitaDesc: string,
         aplicacao:string
     ){
@@ -20,7 +21,7 @@ export class Receita{
         this.nome = nome;
         this.idadeMin = idadeMin;
         this.tipo = tipo;
-        this.funcao = funcao;
+        this.funcoes = funcoes;
         this.receitaDesc = receitaDesc;
         this.aplicacao = aplicacao;
     }

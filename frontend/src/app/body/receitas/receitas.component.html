@@ -1,9 +1,49 @@
 <br>
 <div class="container">
-  <h2 [hidden]="receitas && receitas.length">Não tem qualquer receita no seu livro :(</h2>
+  <h2 *ngIf="(!receitas || !receitas.length) && !filter">Não tem qualquer receita no seu livro :(</h2>
   <br>
-  <button routerLink="/criarReceita" routerLinkActive="active" class="btn btn-primary" type="button">Adicionar</button>
-  <!-- <button *ngIf="!hideButton" routerLink="/criarReceita" routerLinkActive="active" class="btn btn-primary" type="button" (click)="hideAddButton()">Adicionar</button> -->
+  <div class="row">
+    <div class="col-sm-2">
+      <button routerLink="/criarReceita" routerLinkActive="active" class="btn btn-primary"
+        type="button">Adicionar</button>
+    </div>
+    <div class="col-sm-10 ">
+      <div class="row justify-content-end">
+        <div class="col-sm-3">
+          <!-- <label for="tipo" class="font-weight-bold">Função</label> -->
+          <!-- <select id="funcao" class="form-control font-weight-bold" (change)="getFuncoes($event)"> -->
+          <select id="funcao" class="form-control font-weight-bold" (change)="setFilters()">
+            <option value="" disabled selected hidden>Função</option>
+            <!-- <option selected>Função</option> getFuncoes-->
+            <option value="Todas">Todas</option>
+            <option *ngFor="let fun of funcoes" value="{{fun.funcao}}">{{fun.funcao}}</option>
+          </select>
+        </div>
+        <div class="col-sm-3">
+          <!-- <label for="tipo" class="font-weight-bold">Função</label> -->
+          <!-- <select id="tipo" class="form-control font-weight-bold" (change)="getTipos($event)"> -->
+          <select id="tipo" class="form-control font-weight-bold" (change)="setFilters()">
+            <option value="" disabled selected hidden>Tipo</option>
+            <!-- <option selected>Função</option> -->
+            <option value="Todas">Todas</option>
+            <option value="Inalação">Inalação</option>
+            <option value="Difusão">Difusão</option>
+            <option value="Atópico">Atópico</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-4">
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <div *ngIf="(!receitas || !receitas.length) && filter">
+        <hr>
+        <h6 class="text-center">{{message_search}}</h6>
+      </div>
+    </div>
+  </div>
 </div>
 <br>
 <div *ngIf="filtersLoaded | async" class="container">
@@ -12,24 +52,22 @@
       <div class="card-body">
         <div class="row">
           <div class="col-md-5 align-self-center">
-            <h5>
-              {{receita.nome}}
-            </h5>
+            <h5>{{receita.nome}}</h5>
           </div>
           <div class="col-md-5 align-self-center">
-            <h6>
-
-              {{receita.tipo}}
-            </h6>
+            <h6>{{receita.tipo}}</h6>
           </div>
           <div class="col-md-2 float-right">
-            <button type="button" routerLink="/receita/{{receita.id}}" routerLinkActive="active" class="btn btn-outline-primary btn-sm">
+            <button type="button" routerLink="/receita/{{receita.id}}" routerLinkActive="active"
+              class="btn btn-outline-primary btn-sm">
               <i class="bi bi-eye"></i>
             </button>
-            <button type="button" routerLink="/editarReceita/{{receita.id}}" routerLinkActive="active" class="btn btn-outline-success btn-sm margin-l-5px">
+            <button type="button" routerLink="/editarReceita/{{receita.id}}" routerLinkActive="active"
+              class="btn btn-outline-success btn-sm margin-l-5px">
               <i class="bi bi-pencil"></i>
             </button>
-            <button type="button" id="openModalDelete" #openModalDelete data-toggle="modal" data-target="#delete-modal" class="btn btn-outline-danger btn-sm margin-l-5px" (click)="setIdToDelete(receita.id)">
+            <button type="button" id="openModalDelete" #openModalDelete data-toggle="modal" data-target="#delete-modal"
+              class="btn btn-outline-danger btn-sm margin-l-5px" (click)="setIdToDelete(receita.id)">
               <i class="bi bi-trash"></i>
             </button>
           </div>
@@ -50,10 +88,10 @@
       </div>
       <div class="modal-body">
         <p>Tem a certeza?</p>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-success" (click)="apagarReceita()">Sim</button>
-            <button type="button" class="btn btn-danger" data-dismiss="modal">Não</button>
-          </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success" (click)="apagarReceita()">Sim</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Não</button>
+        </div>
       </div>
     </div>
   </div>

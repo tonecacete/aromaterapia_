@@ -22,9 +22,12 @@ export class CriarReceitaComponent implements OnInit, OnChanges {
   funcao: Funcao;
   receitaDesc: string;
   aplicacao:string;
-  funcoes;
+  funcoes: Funcao[];
   funcoesReceita: string[] = [];
   newFuncao = false;
+
+
+  //var: Funcao;
 
   //id;
   
@@ -36,13 +39,10 @@ export class CriarReceitaComponent implements OnInit, OnChanges {
     ) { }
 
   ngOnInit() {
-    //this.id = this.receitasService.getReceitaId();
-    //this.receitas = this.receitasService.getReceitas();
-    this.backendService.getFuncoes().subscribe(funcoes => this.funcoes = funcoes);
     this.backendService.getReceitas().subscribe(receitas => this.receitas = receitas);
-/*     this.route.queryParams.subscribe(params => {
-      this.nome = params['nome'];
-    }); */
+    this.backendService.getFuncoes().subscribe((data: any[])=>{
+      this.funcoes = data;
+    })
   }
 
   ngOnChanges(){
@@ -51,12 +51,19 @@ export class CriarReceitaComponent implements OnInit, OnChanges {
 
   addReceita(){
     console.log("add")
+    let func: Funcao[] = [];
+    this.funcoes = this.funcoes.filter(f => f.check == true);
+
+    for(let f of this.funcoes){
+      let fu = new Funcao(f.funcao,f.check)
+      func.push(fu);
+    }
     this.receita = new Receita(
       0,
       this.nome,
       this.idadeMin,
       this.tipo,
-      this.funcoesReceita,
+      func,
       this.receitaDesc,
       this.aplicacao
     )
@@ -73,11 +80,10 @@ export class CriarReceitaComponent implements OnInit, OnChanges {
 
   setFuncao(event){
     console.log(event);
-    const index: number = this.funcoesReceita.indexOf(event.target.defaultValue);
-    if (index == -1) {
-      this.funcoesReceita.push(event.target.defaultValue)
-    }else{
-      this.funcoesReceita.splice(index, 1);
+    for(let f of this.funcoes){
+      if(f.funcao == event.target.defaultValue){
+        f.check = !f.check;
+      }
     }
   }
 
@@ -87,8 +93,8 @@ export class CriarReceitaComponent implements OnInit, OnChanges {
 
   newFuncaoClick(funcao,newFuncao){
     if (newFuncao) {
-      this.funcoes.push({"funcao": funcao});
-      this.funcao = new Funcao(funcao);
+      this.funcoes.push(new Funcao(funcao,false));
+      this.funcao = new Funcao(funcao,false);
       this.backendService.addFuncoes(this.funcao);
       this.funcao = undefined;
     }
