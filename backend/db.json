@@ -20,11 +20,12 @@
         }
       ],
       "receitaDesc": "1111",
-      "aplicacao": "11111"
+      "aplicacao": "11111",
+      "observacoes": "1231"
     },
     {
       "id": 80,
-      "nome": "fu",
+      "nome": "fuuuuuuuuu",
       "idadeMin": 1,
       "tipo": "Inalação",
       "funcoes": [
@@ -57,6 +58,87 @@
       ],
       "receitaDesc": "awewq",
       "aplicacao": "qweq"
+    },
+    {
+      "id": 82,
+      "nome": "Uma nova receita a serio",
+      "idadeMin": 1,
+      "tipo": "Difusão",
+      "funcoes": [
+        {
+          "funcao": "Dor de Cabeça",
+          "check": true
+        },
+        {
+          "funcao": "Dor Muscular",
+          "check": true
+        },
+        {
+          "funcao": "Dor de Barriga",
+          "check": true
+        },
+        {
+          "funcao": "Dores Menstruais",
+          "check": true
+        }
+      ],
+      "receitaDesc": "mete-se uma cena no coiso e uma coisa na situação",
+      "aplicacao": "aplica-se como se deve aplicar oh animal xD"
+    },
+    {
+      "id": 83,
+      "nome": "Outra receita das boas ",
+      "idadeMin": 18,
+      "tipo": "Atópico",
+      "funcoes": [
+        {
+          "funcao": "Dor Muscular",
+          "check": true
+        }
+      ],
+      "receitaDesc": "Asas de gambuzino com pelos de saguin",
+      "aplicacao": "aplica-se como se pode oh mano ! xD"
+    },
+    {
+      "id": 84,
+      "nome": "António Pereira",
+      "idadeMin": 25,
+      "tipo": "Difusão",
+      "funcoes": [
+        {
+          "funcao": "Febre",
+          "check": true
+        },
+        {
+          "funcao": "Dor Muscular",
+          "check": true
+        }
+      ],
+      "receitaDesc": "123",
+      "aplicacao": "+654"
+    },
+    {
+      "id": 85,
+      "nome": "António Pereira",
+      "idadeMin": 654,
+      "tipo": "Difusão",
+      "funcoes": [
+        {
+          "funcao": "Dor de Cabeça",
+          "check": true
+        },
+        {
+          "funcao": "Dor Muscular",
+          "check": true
+        },
+        {
+          "funcao": "Irritação de Pele",
+          "check": true
+        }
+      ],
+      "receitaDesc": "654654",
+      "aplicacao": "844+984",
+      "observacoes": "233321"
     }
   ],
   "funcoes": [
@@ -104,6 +186,12 @@
       "funcao": "Irritação de Pele",
       "check": false,
       "id": 9
+    }
+  ],
+  "users": [
+    {
+      "username": "test",
+      "password": "test"
     }
   ]
 }

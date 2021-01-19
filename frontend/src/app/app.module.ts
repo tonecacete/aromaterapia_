@@ -17,7 +17,7 @@ import { EditarReceitaComponent } from './body/receitas/editar-receita/editar-re
 import { BackendService } from './body/receitas/services/backend.service';
 
 @NgModule({
-  declarations: [			
+  declarations: [				
     AppComponent,
     HeaderComponent,
       BodyComponent,

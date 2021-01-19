@@ -16,14 +16,14 @@ export class CriarReceitaService {
     this.receitas = receitas;
   }
 
-  getReceitas(): Observable<any>  {
+/*   getReceitas(): Observable<any>  {
     let temp = this.receitas;
     //this.clearData();
     //return temp;
     return of(temp).pipe(delay(300));
-  }
+  } */
 
-  getReceitas2(){
+  getReceitas(){
     let temp = this.receitas;
     //this.clearData();
     return temp;

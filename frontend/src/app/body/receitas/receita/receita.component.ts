@@ -16,6 +16,7 @@ export class ReceitaComponent implements OnInit {
   tipo: string;
   receitaDesc: string;
   aplicacao: string;
+  observacoes: string;
   funcoes: Funcao[];
   receita;
   funcoes_str: string;
@@ -37,8 +38,8 @@ export class ReceitaComponent implements OnInit {
     let temp_func: Funcao;
     this.funcoes_str = '';
 
-    if (this.receitasService.getReceitas2()) {
-      let receita = this.receitasService.getReceitas2().find(x => x.id == rId);
+    if (this.receitasService.getReceitas()) {
+      let receita = this.receitasService.getReceitas().find(x => x.id == rId);
       this.backendService.getFuncoes().subscribe((data: any[]) => {
         this.funcoes = data;
       })
@@ -59,6 +60,7 @@ export class ReceitaComponent implements OnInit {
       this.tipo = receita.tipo
       this.receitaDesc = receita.receitaDesc
       this.aplicacao = receita.aplicacao
+      this.observacoes = receita.observacoes
     }
 
   }

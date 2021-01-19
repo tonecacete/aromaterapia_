@@ -10,6 +10,7 @@ export class BackendService {
 
   private RECEITAS_ENDPOINT = "http://localhost:3001/receitas/";
   private FUNCOES_ENDPOINT = "http://localhost:3001/funcoes/";
+  private USERS_ENDPOINT = "http://localhost:3001/users/";
 
   constructor(private httpClient: HttpClient) { }
 
@@ -19,6 +20,10 @@ export class BackendService {
 
   public getFuncoes(){
     return this.httpClient.get(this.FUNCOES_ENDPOINT);
+  }
+
+  public getUsers(){
+    return this.httpClient.get(this.USERS_ENDPOINT);
   }
 
   public addFuncoes(funcao: Funcao){
@@ -41,14 +46,18 @@ export class BackendService {
         console.log(JSON.stringify(error.json()));
       });
   }
-  public deleteReceita(id){
-    this.httpClient.delete(this.RECEITAS_ENDPOINT + id).subscribe(data => {
-      console.log(data);
-    });
-  }
+
   public editarReceita(receita: Receita, id){
     this.httpClient.put(this.RECEITAS_ENDPOINT + id, receita).subscribe(data => {
       console.log(data);
     });
   }
+
+  public deleteReceita(id){
+    this.httpClient.delete(this.RECEITAS_ENDPOINT + id).subscribe(data => {
+      console.log(data);
+    });
+  }
+
+
 }

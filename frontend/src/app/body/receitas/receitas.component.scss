@@ -9,3 +9,13 @@
 i { 
     font-size: 18px;
 }
+
+.card-body {
+    border: 3px solid transparent;
+    position: relative;
+  }
+
+.card-body:hover {
+    background-color: rgb(206, 224, 101);
+    border: solid yellowgreen 3px;
+  }

@@ -48,13 +48,36 @@
           <label for="aplicacao" class="font-weight-bold">Aplicação</label>
           <textarea class="form-control" id="aplicacao" rows="3" [(ngModel)]="aplicacao"></textarea>
         </div>
+        <div class="form-group col-md-12">
+          <label for="observacoes" class="font-weight-bold">Observações</label>
+          <textarea class="form-control" id="observacoes" rows="1" [(ngModel)]="observacoes"></textarea>
+        </div>
       </div>
       <div class="row">
         <div class="col-md-auto">
-          <button type="button" class="btn btn-success" (click)="addReceita()">Adicionar</button>
-          <button type="button" routerLink="/receitas" routerLinkActive="active" type="button"
-            class="btn btn-outline-secondary margin-l-5px">Voltar</button>
+          <button type="button" class="btn btn-success" id="openModalCriar" #openModalCriar data-toggle="modal" data-target="#criar-modal">Adicionar</button>
+          <button type="button" routerLink="/receitas" routerLinkActive="active" type="button" class="btn btn-outline-secondary margin-l-5px">Voltar</button>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--Criar Modal TODO - separate component -->
+<div class="modal" id="criar-modal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Atenção!</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Deseja adicionar a sua nova receita?</p>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-success" (click)="addReceita()">Sim</button>
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Não</button>
+          </div>
       </div>
     </div>
   </div>

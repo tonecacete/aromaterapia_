@@ -7,6 +7,7 @@ export class Receita{
     funcoes: Funcao[];
     receitaDesc: string;
     aplicacao:string;
+    observacoes:string;
 
     constructor(
         id:number,
@@ -15,7 +16,8 @@ export class Receita{
         tipo:string,
         funcoes: Funcao[],
         receitaDesc: string,
-        aplicacao:string
+        aplicacao:string,
+        observacoes:string
     ){
         this.id = id;
         this.nome = nome;
@@ -24,5 +26,6 @@ export class Receita{
         this.funcoes = funcoes;
         this.receitaDesc = receitaDesc;
         this.aplicacao = aplicacao;
+        this.observacoes = observacoes;
     }
 }

@@ -22,6 +22,7 @@ export class EditarReceitaComponent implements OnInit {
   funcoes: Funcao[];
   receitaDesc: string;
   aplicacao: string;
+  observacoes: string;
   newFuncao = false;
 
   id;
@@ -39,8 +40,8 @@ export class EditarReceitaComponent implements OnInit {
       this.eId = params.get('id');
     });
 
-    if (this.receitasService.getReceitas2()) {
-      this.receita = this.receitasService.getReceitas2().find(x => x.id == this.eId);
+    if (this.receitasService.getReceitas()) {
+      this.receita = this.receitasService.getReceitas().find(x => x.id == this.eId);
       this.backendService.getFuncoes().subscribe((data: any[]) => {
         this.funcoes = data;
         for (let i = 0; i < this.receita.funcoes.length; i++) {
@@ -53,6 +54,7 @@ export class EditarReceitaComponent implements OnInit {
       this.tipo = this.receita.tipo
       this.receitaDesc = this.receita.receitaDesc
       this.aplicacao = this.receita.aplicacao
+      this.observacoes = this.receita.observacoes
     }
 
 
@@ -102,8 +104,9 @@ export class EditarReceitaComponent implements OnInit {
     this.receita.funcoes = funcoes;
     this.receita.receitaDesc = this.receitaDesc;
     this.receita.aplicacao = this.aplicacao;
+    this.receita.observacoes = this.observacoes;
     this.backendService.editarReceita(this.receita, this.eId);
-    this.receitas = this.receitasService.getReceitas2().filter(x => x.id !== this.eId);
+    this.receitas = this.receitasService.getReceitas().filter(x => x.id !== this.eId);
     this.receitas.push(this.receita);
     this.receitasService.setReceitas(this.receitas);
     this.openModalEdit.nativeElement.click();
