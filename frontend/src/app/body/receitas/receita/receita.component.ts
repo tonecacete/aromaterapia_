@@ -47,7 +47,7 @@ export class ReceitaComponent implements OnInit {
         if (func.check) {
           temp_func = new Funcao(func.funcao, func.check);
           temp_func_list.push(temp_func);
-          this.funcoes_str += func.funcao;
+          this.funcoes_str += "'" + func.funcao + "'";
           if (i !== receita.funcoes.length - 1) {
             this.funcoes_str += ', '
           }

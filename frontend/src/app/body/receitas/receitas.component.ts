@@ -98,4 +98,10 @@ export class ReceitasComponent implements OnInit, OnChanges, DoCheck {
 
   }
 
+  clearFilters(){
+    (<HTMLInputElement>document.getElementById('tipo')).value = "";
+    (<HTMLInputElement>document.getElementById('funcao')).value = "";
+    this.receitas = this.receitasService.getReceitas2();
+  }
+
 }

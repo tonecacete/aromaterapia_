@@ -30,7 +30,7 @@
             <div class="row">
               <div class="col-sm-9">
                 <div class="btn-group-toggle" data-toggle="buttons">
-                  <label *ngFor="let funcao of funcoes;let i = index;" class="btn btn-outline-secondary btn-sm margin-l-5px" [ngClass]="{'active' : funcao.check }">
+                  <label *ngFor="let funcao of funcoes;let i = index;" class="btn btn-outline-secondary btn-sm margin-t-l-5px" [ngClass]="{'active' : funcao.check }">
                     <input type="checkbox" value="{{funcao.funcao}}" (change)="setFuncao($event)" id="funcao{{i}}">{{funcao.funcao}}
                   </label>
                 </div>

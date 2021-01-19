@@ -41,7 +41,20 @@
       "nome": "fu2",
       "idadeMin": 21,
       "tipo": "Inalação",
-      "funcoes": [],
+      "funcoes": [
+        {
+          "funcao": "Febre",
+          "check": true
+        },
+        {
+          "funcao": "Dor de Cabeça",
+          "check": true
+        },
+        {
+          "funcao": "Dor de Barriga",
+          "check": true
+        }
+      ],
       "receitaDesc": "awewq",
       "aplicacao": "qweq"
     }
@@ -81,6 +94,16 @@
       "funcao": "Dores Menstruais",
       "check": false,
       "id": 7
+    },
+    {
+      "funcao": "Insónias",
+      "check": false,
+      "id": 8
+    },
+    {
+      "funcao": "Irritação de Pele",
+      "check": false,
+      "id": 9
     }
   ]
 }
