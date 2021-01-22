@@ -163,7 +163,7 @@ export class ReceitasComponent implements OnInit, OnChanges, DoCheck {
   }
 
   goToReceita(event,id){
-    let idEl = event.srcElement.id
+    let idEl = event.srcElement ? event.srcElement.id : undefined;
     if (idEl == "goToReceitaDiv" ||
         idEl == "goToReceitaButton" || 
         idEl == "goToReceitaIcon"  || 
@@ -171,8 +171,7 @@ export class ReceitasComponent implements OnInit, OnChanges, DoCheck {
           idEl !== "iconDelete" &&
           idEl !== "editReceitaButton" &&
           idEl !== "editReceitaIcon"
-          )) {
-      //this.router.navigate(['/receitas'], { relativeTo: this.route });
+          ) || event.id) {
       this.verReceitaOnGoing = true;
       console.log(this.receita);
     }

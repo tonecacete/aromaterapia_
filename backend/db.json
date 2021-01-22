@@ -194,7 +194,7 @@
     },
     {
       "id": 95,
-      "nome": "António Pereira6",
+      "nome": "António Pereira61111",
       "idadeMin": {
         "idade": 1,
         "tipo": "meses"
@@ -235,10 +235,6 @@
         },
         {
           "funcao": "Irritação de Pele",
-          "check": true
-        },
-        {
-          "funcao": "q",
           "check": true
         }
       ],

@@ -113,7 +113,7 @@
     <app-criar-receita (novaReceitaFechada)="fecharNovaReceita()"></app-criar-receita>
   </div>
   <div class="col-sm-6" *ngIf="editReceitaOnGoing">
-    <app-editar-receita [receita]="receita" (editReceitaFechada)="fecharEditReceita()"></app-editar-receita>
+    <app-editar-receita [receita]="receita" (ver)="goToReceita($event,this.receita.id)" (editReceitaFechada)="fecharEditReceita()"></app-editar-receita>
   </div>
 </div>
 <!-- Lista de Receitas -->

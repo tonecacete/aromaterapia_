@@ -13,6 +13,7 @@ import { BackendService } from '../services/backend.service';
 export class EditarReceitaComponent implements OnInit,OnChanges {
   @Input() receita;
   @Output() editReceitaFechada = new EventEmitter<boolean>();
+  @Output() ver = new EventEmitter<Receita>();
   @ViewChild('openModalEdit') openModalEdit: ElementRef;
   //@Input() receitas: Receita[];
   receitas: any;
@@ -87,8 +88,6 @@ export class EditarReceitaComponent implements OnInit,OnChanges {
 
   checkboxCheck(val) {
     console.log(val);
-
-
   }
 
   editReceita() {
@@ -135,6 +134,11 @@ export class EditarReceitaComponent implements OnInit,OnChanges {
 
   fecharEditReceita(){
     this.editReceitaFechada.emit(true);
+  }
+
+  goToVer(){
+    this.ver.emit(this.receita);
+    this.fecharEditReceita()
   }
 
 }
