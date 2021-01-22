@@ -1,45 +1,30 @@
-<br>
-<div class="container">
-  <h2 *ngIf="(!receitas || !receitas.length) && !filter">Não tem qualquer receita no seu livro :(</h2>
-  <div class="row">
-    <!-- <div class="col-sm-2">
-      <button routerLink="/criarReceita" routerLinkActive="active" class="btn btn-success"
-      type="button">Adicionar</button>
-    </div> -->
-    <div class="col-sm-12">
-      <hr>
-      <div class="row justify-content-end">
-        <div class="col">
-          <h3 *ngIf="receitas">As minhas receitas</h3>
+<div class="row" style="width: 100%;">
+  <!-- Side navigation -->
+  <div class="col-sm-2 sidenav justify-content-center">
+    <div class="row">
+      <div class="col-sm-12 pl-1 pr-1">
+        <div class="col-sm-12">
+          <button class="btn button-outline btn-sm sidenav-btn"><i class="bi bi-chevron-left"></i></button>
         </div>
-        <!-- <div class="col-sm-1">
-          <button class="btn btn-outline-warning btn-sm" id="openModalPDF" #openModalPDF data-toggle="modal" data-target="#pdf-modal" title="Descarregar receitas em PDF">
-            <i class="bi bi-save2"></i>
-          </button>
+        <div class="col-sm-12 mt-2">
+          <!-- <button routerLink="/criarReceita" routerLinkActive="active" class="btn btn-success btn-sm sidenav-btn "
+            type="button">Nova Receita +</button> -->
+          <button class="btn btn-success btn-sm sidenav-btn" type="button" (click)="novaReceita()">Nova Receita +</button>
         </div>
-        <div class="col-sm-1">
-          <button class="btn btn-outline-success btn-sm" type="button" title="Limpar filtros" (click)="clearFilters()">
-            <i class="bi bi-arrow-clockwise fa-sm"></i>
-          </button>
-        </div> -->
-
-        <div class="col-sm-2">
-          <button class="btn btn-outline-success btn-sm float-right margin-l-5px" type="button" title="Limpar filtros" (click)="clearFilters()">
-            <i class="bi bi-arrow-clockwise fa-sm"></i>
-          </button>
-          <button class="btn btn-outline-warning btn-sm float-right" id="openModalPDF" #openModalPDF data-toggle="modal" data-target="#pdf-modal" title="Descarregar receitas em PDF">
-            <i class="bi bi-save2"></i>
-          </button>
+        <div class="col mt-2">
+          <button class="btn btn-warning btn-sm sidenav-btn" id="openModalPDF" #openModalPDF data-toggle="modal"
+            data-target="#pdf-modal" title="Descarregar receitas em PDF">Download PDF</button>
         </div>
-        
-        <div class="col-sm-2">
+        <!-- Filtros -->
+        <div class="col-sm-12 mt-5">
+          <label for="filtros" class="font-weight-bold"> Filtros</label>
           <select id="funcao" class="form-control font-weight-bold" (change)="setFilters()">
             <option value="" disabled selected hidden>Função</option>
             <option value="Todas">Todas</option>
             <option *ngFor="let fun of funcoes" value="{{fun.funcao}}">{{fun.funcao}}</option>
           </select>
         </div>
-        <div class="col-sm-2">
+        <div class="col-sm-12 mt-2">
           <select id="tipo" class="form-control font-weight-bold" (change)="setFilters()">
             <option value="" disabled selected hidden>Tipo</option>
             <option value="Todas">Todas</option>
@@ -48,59 +33,95 @@
             <option value="Atópico">Atópico</option>
           </select>
         </div>
-        
-      </div>
-      <hr>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-12">
-      <div *ngIf="(!receitas || !receitas.length) && filter">
-        <hr>
-        <h6 class="text-center">{{message_search}}</h6>
-      </div>
-    </div>
-  </div>
-</div>
-<div *ngIf="filtersLoaded | async" class="container">
-  <!-- <hr>
-  <h3 *ngIf="receitas.length && !filter">As minhas receitas</h3>
-  <hr> -->
-  <div *ngFor="let receita of receitas;let i = index;" #receitasHtml>
-    <div class="card" style="margin-top: 5px;" id="goToReceita" (click)="goToReceita($event,receita.id)">
-      <div class="card-body" >
-        <div class="row">
-          <div class="col-md-5 align-self-center">
-            <h5>{{receita.nome}}</h5>
-          </div>
-          <div class="col-md-5 align-self-center">
-            <h6>{{receita.tipo}}</h6>
-          </div>
-          <div class="col-md-2 float-right">
-            <button type="button" routerLink="/receita/{{receita.id}}" routerLinkActive="active"
-              class="btn btn-outline-primary btn-sm">
-              <i class="bi bi-eye"></i>
-            </button>
-            <button type="button" routerLink="/editarReceita/{{receita.id}}" routerLinkActive="active"
-              class="btn btn-outline-success btn-sm margin-l-5px">
-              <i class="bi bi-pencil"></i>
-            </button>
-            <button type="button" id="openModalDelete" #openModalDelete data-toggle="modal" data-target="#delete-modal"
-              class="btn btn-outline-danger btn-sm margin-l-5px" (click)="setIdToDelete(receita.id,receita.nome)">
-              <i class="bi bi-trash" id="iconDelete"></i>
-            </button>
-          </div>
+        <div class="col-sm-12 mt-2">
+          <button class="btn btn-secondary btn-sm float-right margin-l-5px" type="button" title="Limpar filtros"
+            [disabled]="!filter" (click)="clearFilters()">Clear</button>
         </div>
       </div>
     </div>
   </div>
+  <!-- RECEITAS -->
+    <div [ngClass]="{'col-sm-6': 
+                        novaReceitaOnGoing ||
+                        editReceitaOnGoing ||
+                        verReceitaOnGoing,
+                    'col-sm-12':
+                        !novaReceitaOnGoing &&
+                        !editReceitaOnGoing &&
+                        !verReceitaOnGoing,
+                    'div-disabled':
+                        novaReceitaOnGoing ||
+                        editReceitaOnGoing 
+                      }">
+    <!-- <div [ngClass]="{'col-sm-6': novaReceitaOnGoing ,'col-sm-12': !novaReceitaOnGoing   ,'div-disabled': novaReceitaOnGoing}"> -->
+      <div class="container-fluid"> 
+        <div class="pl-3 pr-1">
+          <div *ngIf="filtersLoaded | async" id="containerReceitas" >
+            <h2 *ngIf="(!receitas || !receitas.length) && !filter">Não tem qualquer receita no seu livro :(</h2>
+            <div class="row">
+              <div class="col-sm-12" style="text-align: center;">
+                <hr>
+                <h3 *ngIf="receitas">As minhas receitas</h3>
+                <hr>
+              </div>
+            </div>
+            <div *ngFor="let receita of receitas;let i = index;" #receitasHtml>
+              <div class="card" style="margin-top: 5px;" id="goToReceitaDiv" (click)="goToReceita($event,receita.id)">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-5 align-self-center">
+                      <h5>{{receita.nome}}</h5>
+                    </div>
+                    <div class="col-md-4 align-self-center">
+                      <h6>{{receita.tipo}}</h6>
+                    </div>
+                    <div class="col-md-3 float-right">
+                      <button type="button" id="openModalDelete" #openModalDelete data-toggle="modal"
+                        data-target="#delete-modal" class="btn btn-outline-danger btn-sm margin-l-5px float-right"
+                        (click)="setIdToDelete(receita.id,receita.nome)">
+                        <i class="bi bi-trash" id="iconDelete"></i>
+                      </button>
+                      <button type="button" id="editReceitaButton" class="btn btn-outline-success btn-sm margin-l-5px float-right" (click)="editarReceita()">
+                        <i id="editReceitaIcon" class="bi bi-pencil"></i>
+                      </button>
+                      <button type="button" class="btn btn-outline-primary btn-sm float-right" id="goToReceitaButton" (click)="goToReceita($event,receita.id)">
+                        <i id="goToReceitaIcon" class="bi bi-eye"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <br>
+            <br>
+          </div>
+      </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <div *ngIf="(!receitas || !receitas.length) && filter">
+            <hr>
+            <h6 class="text-center">{{message_search}}</h6>
+          </div>
+        </div>
+      </div>
+    </div>
+  <div class="col-sm-6" *ngIf="verReceitaOnGoing">
+    <app-receita [receita]="receita" (edit)="editarReceita()" (verReceitaFechada)="fecharVerReceita()" ></app-receita>
+  </div>
+  <div class="col-sm-6" *ngIf="novaReceitaOnGoing">
+    <app-criar-receita (novaReceitaFechada)="fecharNovaReceita()"></app-criar-receita>
+  </div>
+  <div class="col-sm-6" *ngIf="editReceitaOnGoing">
+    <app-editar-receita [receita]="receita" (editReceitaFechada)="fecharEditReceita()"></app-editar-receita>
+  </div>
 </div>
-<div class="col-sm-12">
-  <hr>
-  <button routerLink="/criarReceita" routerLinkActive="active" class="btn btn-success float-right"
-  type="button">Adicionar</button>
-</div>
-
+<!-- Lista de Receitas -->
+<!-- <div class="row justify-content-end">
+  <button routerLinkActive="active" class="btn btn-success float-right" style="margin-right: 5%; margin-bottom: 5%;"
+    type="button" (click)="backToTop()">
+  </button>
+</div> -->
 <!--Delete Modal TODO - separate component -->
 <div class="modal" id="delete-modal" tabindex="-1">
   <div class="modal-dialog">

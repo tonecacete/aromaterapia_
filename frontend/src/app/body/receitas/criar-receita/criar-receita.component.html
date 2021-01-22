@@ -6,15 +6,28 @@
     </div>
     <div class="card-body">
       <div class="form-row">
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-5">
           <label for="nome" class="font-weight-bold">Nome</label>
           <input type="text" class="form-control" id="nome" [(ngModel)]="nome">
         </div>
-        <div class="form-group col-md-2">
-          <label for="idadeMin" class="font-weight-bold">Idade</label>
-          <input type="number" class="form-control" id="idadeMin" [(ngModel)]="idadeMin">
+        <div class="col-sm-1">
+          
         </div>
-        <div class="form-group col-md-4">
+        <div class="form-group col-md-1">
+          <label for="idadeMin" class="font-weight-bold">Idade</label>
+          <input type="number" class="form-control" id="idadeMin" [(ngModel)]="idade">
+        </div>
+        <div class="col-sm-2 form-check form-check-inline">
+          <div class="form-check form-check-inline" id="anosRadio">
+            <input class="form-check-input" type="radio" name="exampleRadios" id="anos" value="anos" #anos [(ngModel)]="idade_opt" checked>
+            <label class="form-check-label" for="anos">anos</label>
+          </div>
+          <div class="form-check form-check-inline" id="mesesRadio">
+            <input class="form-check-input" type="radio" name="exampleRadios" id="meses" value="meses" [(ngModel)]="idade_opt" #meses>
+            <label class="form-check-label" for="anos">meses</label>
+          </div>
+        </div>
+        <div class="form-group col-md-2">
           <label for="tipo" class="font-weight-bold">Tipo</label>
           <select id="tipo" class="form-control" [(ngModel)]="tipo">
             <option selected>Inalação</option>
@@ -27,16 +40,20 @@
           <div class="row">
             <div class="col-sm-9">
               <div class="btn-group-toggle" data-toggle="buttons">
-                <label *ngFor="let funcao of funcoes;let i = index;" class="btn btn-outline-secondary btn-sm margin-t-l-5px">
-                  <input  type="checkbox" id="funcao{{i}}" (change)="setFuncao($event)" value="{{funcao.funcao}}">{{funcao.funcao}}
+                <label *ngFor="let funcao of funcoes;let i = index;"
+                  class="btn btn-outline-secondary btn-sm margin-t-l-5px">
+                  <input type="checkbox" id="funcao{{i}}" (change)="setFuncao($event)"
+                    value="{{funcao.funcao}}">{{funcao.funcao}}
                 </label>
               </div>
             </div>
             <div class="col-sm-2">
-              <input type="text" *ngIf="newFuncao" class="form-control float-right" id="nome" [(ngModel)]="funcao" (keyup.enter)="newFuncaoClick(funcao,newFuncao)">
+              <input type="text" *ngIf="newFuncao" class="form-control float-right" id="nome" [(ngModel)]="funcao"
+                (keyup.enter)="newFuncaoClick(funcao,newFuncao)">
             </div>
             <div class="col-sm-1 justify-content-end">
-              <button class="btn btn-outline-success btn-sm" style="margin-top: 3px;" type="button" (click)="newFuncaoClick(funcao,newFuncao)">+</button>
+              <button class="btn btn-outline-success btn-sm" style="margin-top: 3px;" type="button"
+                (click)="newFuncaoClick(funcao,newFuncao)">+</button>
             </div>
           </div>
         </div>
@@ -55,8 +72,9 @@
       </div>
       <div class="row">
         <div class="col-md-auto">
-          <button type="button" class="btn btn-success" id="openModalCriar" #openModalCriar data-toggle="modal" data-target="#criar-modal">Adicionar</button>
-          <button type="button" routerLink="/receitas" routerLinkActive="active" type="button" class="btn btn-outline-secondary margin-l-5px">Voltar</button>
+          <button type="button" class="btn btn-success" id="openModalCriar" #openModalCriar data-toggle="modal"
+            data-target="#criar-modal">Adicionar</button>
+          <button type="button" type="button" class="btn btn-outline-secondary margin-l-5px" (click)="fecharNovaJanela()">Voltar</button>
         </div>
       </div>
     </div>
@@ -74,10 +92,10 @@
       </div>
       <div class="modal-body">
         <p>Deseja adicionar a sua nova receita?</p>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-success" (click)="addReceita()">Sim</button>
-            <button type="button" class="btn btn-danger" data-dismiss="modal">Não</button>
-          </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success" (click)="addReceita()">Sim</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Não</button>
+        </div>
       </div>
     </div>
   </div>

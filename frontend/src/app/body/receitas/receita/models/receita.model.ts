@@ -2,7 +2,7 @@ import { Funcao } from './funcao.model';
 export class Receita{
     id:number;
     nome:string;
-    idadeMin: number;
+    idadeMin: any;
     tipo:string;
     funcoes: Funcao[];
     receitaDesc: string;
@@ -12,7 +12,7 @@ export class Receita{
     constructor(
         id:number,
         nome:string,
-        idadeMin:number,
+        idadeMin:any,
         tipo:string,
         funcoes: Funcao[],
         receitaDesc: string,

@@ -1,3 +1,4 @@
+import { FooterComponent } from './body/footer/footer.component';
 import { CriarReceitaComponent } from './body/receitas/criar-receita/criar-receita.component';
 import { ReceitasComponent } from './body/receitas/receitas.component';
 import { BrowserModule } from '@angular/platform-browser';
@@ -9,7 +10,7 @@ import { HeaderComponent } from './header/header.component';
 import { BodyComponent } from './body/body.component';
 import { LoginComponent } from './login/login.component';
 import { LoginService } from './login/services/login.service';
-import { CriarReceitaService } from './body/receitas/services/criar-receita.service';
+import { ReceitasService } from './body/receitas/services/receitas.service';
 import { ReceitaComponent } from './body/receitas/receita/receita.component';
 
 import { HttpClientModule } from '@angular/common/http';
@@ -21,6 +22,7 @@ import { BackendService } from './body/receitas/services/backend.service';
     AppComponent,
     HeaderComponent,
       BodyComponent,
+      FooterComponent,
       ReceitasComponent,
       ReceitaComponent,
       CriarReceitaComponent,
@@ -33,7 +35,7 @@ import { BackendService } from './body/receitas/services/backend.service';
     FormsModule,
     HttpClientModule
   ],
-  providers: [LoginService, CriarReceitaService, BackendService],
+  providers: [LoginService, ReceitasService, BackendService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

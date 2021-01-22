@@ -1,8 +1,8 @@
 import { Funcao } from './../receita/models/funcao.model';
 import { Receita } from './../receita/models/receita.model';
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild, OnChanges } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CriarReceitaService } from '../services/criar-receita.service';
+import { ReceitasService } from '../services/receitas.service';
 import { BackendService } from '../services/backend.service';
 
 @Component({
@@ -10,13 +10,16 @@ import { BackendService } from '../services/backend.service';
   templateUrl: './editar-receita.component.html',
   styleUrls: ['./editar-receita.component.scss']
 })
-export class EditarReceitaComponent implements OnInit {
+export class EditarReceitaComponent implements OnInit,OnChanges {
+  @Input() receita;
+  @Output() editReceitaFechada = new EventEmitter<boolean>();
   @ViewChild('openModalEdit') openModalEdit: ElementRef;
-  @Input() receita: Receita;
   //@Input() receitas: Receita[];
   receitas: any;
   nome: string;
-  idadeMin: number;
+  idadeMin: {};
+  idade: number;
+  idade_opt: string;
   tipo: string;
   funcao: Funcao;
   funcoes: Funcao[];
@@ -30,36 +33,36 @@ export class EditarReceitaComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private receitasService: CriarReceitaService,
+    private receitasService: ReceitasService,
     private backendService: BackendService
   ) { }
 
   ngOnInit() {
-
-    this.route.paramMap.subscribe(params => {
-      this.eId = params.get('id');
-    });
-
-    if (this.receitasService.getReceitas()) {
-      this.receita = this.receitasService.getReceitas().find(x => x.id == this.eId);
-      this.backendService.getFuncoes().subscribe((data: any[]) => {
-        this.funcoes = data;
-        for (let i = 0; i < this.receita.funcoes.length; i++) {
-          this.setCheckFun(this.receita.funcoes[i].funcao);
-        }
-      })
-      this.id = this.eId;
-      this.nome = this.receita.nome
-      this.idadeMin = this.receita.idadeMin
-      this.tipo = this.receita.tipo
-      this.receitaDesc = this.receita.receitaDesc
-      this.aplicacao = this.receita.aplicacao
-      this.observacoes = this.receita.observacoes
-    }
-
-
-
+    this.fetchReceita();
   }
+
+  ngOnChanges(){
+    this.fetchReceita();
+  }
+
+  fetchReceita(){
+    this.receita = this.receitasService.getReceita();
+    this.backendService.getFuncoes().subscribe((data: any[]) => {
+      this.funcoes = data;
+      for (let i = 0; i < this.receita.funcoes.length; i++) {
+        this.setCheckFun(this.receita.funcoes[i].funcao);
+      }
+    })
+    this.nome = this.receita.nome
+    this.idadeMin = this.receita.idadeMin
+    this.idade = this.receita.idadeMin.idade;
+    this.idade_opt = this.receita.idadeMin.tipo;
+    this.tipo = this.receita.tipo;
+    this.receitaDesc = this.receita.receitaDesc;
+    this.aplicacao = this.receita.aplicacao;
+    this.observacoes = this.receita.observacoes;
+  }
+
   setCheckFun(fun) {
     if (this.funcoes) {
       for (let j = 0; j < this.funcoes.length; j++) {
@@ -92,9 +95,8 @@ export class EditarReceitaComponent implements OnInit {
     let funcoes: Funcao[] = [];
 
     console.log("edit")
-    this.receita.id = this.eId;
     this.receita.nome = this.nome;
-    this.receita.idadeMin = this.idadeMin;
+    this.receita.idadeMin = { idade : this.idade, tipo: this.idade_opt};
     this.receita.tipo = this.tipo;
     this.funcoes = this.funcoes.filter(f => f.check == true);
     for (let f of this.funcoes) {
@@ -105,12 +107,12 @@ export class EditarReceitaComponent implements OnInit {
     this.receita.receitaDesc = this.receitaDesc;
     this.receita.aplicacao = this.aplicacao;
     this.receita.observacoes = this.observacoes;
-    this.backendService.editarReceita(this.receita, this.eId);
-    this.receitas = this.receitasService.getReceitas().filter(x => x.id !== this.eId);
+    this.backendService.editarReceita(this.receita, this.receita.id);
+    this.receitas = this.receitasService.getReceitas().filter(x => x.id !== this.receita.id);
     this.receitas.push(this.receita);
     this.receitasService.setReceitas(this.receitas);
+    this.fecharEditReceita();
     this.openModalEdit.nativeElement.click();
-    this.router.navigate(['/receitas'], { relativeTo: this.route });
   }
 
   addFuncao() {
@@ -129,6 +131,10 @@ export class EditarReceitaComponent implements OnInit {
 
   getSelectedFuncoes() {
 
+  }
+
+  fecharEditReceita(){
+    this.editReceitaFechada.emit(true);
   }
 
 }

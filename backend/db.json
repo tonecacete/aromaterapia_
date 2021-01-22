@@ -1,11 +1,210 @@
 {
   "receitas": [
     {
-      "id": 79,
-      "nome": "teste master",
-      "idadeMin": 11111,
+      "id": 87,
+      "nome": "António Pereira",
+      "idadeMin": {
+        "idade": 1,
+        "tipo": "anos"
+      },
       "tipo": "Difusão",
       "funcoes": [
+        {
+          "funcao": "Irritação de Pele",
+          "check": true
+        }
+      ],
+      "receitaDesc": "as",
+      "aplicacao": "asda",
+      "observacoes": "asda"
+    },
+    {
+      "id": 88,
+      "nome": "fu1q112121",
+      "idadeMin": {
+        "idade": 1,
+        "tipo": "meses"
+      },
+      "tipo": "Difusão",
+      "funcoes": [
+        {
+          "funcao": "Dor Muscular",
+          "check": true
+        }
+      ],
+      "receitaDesc": "1",
+      "aplicacao": "1",
+      "observacoes": "1"
+    },
+    {
+      "id": 89,
+      "nome": "António Pereira111",
+      "idadeMin": {
+        "idade": 1,
+        "tipo": "meses"
+      },
+      "tipo": "Inalação",
+      "funcoes": [
+        {
+          "funcao": "Congestão Nasal",
+          "check": true
+        },
+        {
+          "funcao": "Dor de Cabeça",
+          "check": true
+        },
+        {
+          "funcao": "Irritação de Pele",
+          "check": true
+        }
+      ],
+      "aplicacao": "1",
+      "observacoes": "1",
+      "receitaDesc": "1"
+    },
+    {
+      "id": 90,
+      "nome": "António Pereira111",
+      "idadeMin": {
+        "idade": 1,
+        "tipo": "meses"
+      },
+      "tipo": "Inalação",
+      "funcoes": [
+        {
+          "funcao": "Congestão Nasal",
+          "check": true
+        },
+        {
+          "funcao": "Dor de Cabeça",
+          "check": true
+        },
+        {
+          "funcao": "Irritação de Pele",
+          "check": true
+        }
+      ],
+      "aplicacao": "1",
+      "observacoes": "1",
+      "receitaDesc": "1"
+    },
+    {
+      "id": 91,
+      "nome": "António Pereira111",
+      "idadeMin": {
+        "idade": 1,
+        "tipo": "meses"
+      },
+      "tipo": "Inalação",
+      "funcoes": [
+        {
+          "funcao": "Congestão Nasal",
+          "check": true
+        },
+        {
+          "funcao": "Dor de Cabeça",
+          "check": true
+        },
+        {
+          "funcao": "Irritação de Pele",
+          "check": true
+        }
+      ],
+      "aplicacao": "1",
+      "observacoes": "1",
+      "receitaDesc": "1"
+    },
+    {
+      "id": 92,
+      "nome": "António Pereira111",
+      "idadeMin": {
+        "idade": 1,
+        "tipo": "meses"
+      },
+      "tipo": "Inalação",
+      "funcoes": [
+        {
+          "funcao": "Congestão Nasal",
+          "check": true
+        },
+        {
+          "funcao": "Dor de Cabeça",
+          "check": true
+        },
+        {
+          "funcao": "Irritação de Pele",
+          "check": true
+        }
+      ],
+      "aplicacao": "1",
+      "observacoes": "1",
+      "receitaDesc": "1"
+    },
+    {
+      "id": 93,
+      "nome": "António Pereira111",
+      "idadeMin": {
+        "idade": 1,
+        "tipo": "meses"
+      },
+      "tipo": "Inalação",
+      "funcoes": [
+        {
+          "funcao": "Congestão Nasal",
+          "check": true
+        },
+        {
+          "funcao": "Dor de Cabeça",
+          "check": true
+        },
+        {
+          "funcao": "Irritação de Pele",
+          "check": true
+        }
+      ],
+      "aplicacao": "1",
+      "observacoes": "1",
+      "receitaDesc": "1"
+    },
+    {
+      "id": 94,
+      "nome": "António Pereira111",
+      "idadeMin": {
+        "idade": 1,
+        "tipo": "meses"
+      },
+      "tipo": "Inalação",
+      "funcoes": [
+        {
+          "funcao": "Congestão Nasal",
+          "check": true
+        },
+        {
+          "funcao": "Dor de Cabeça",
+          "check": true
+        },
+        {
+          "funcao": "Irritação de Pele",
+          "check": true
+        }
+      ],
+      "aplicacao": "1",
+      "observacoes": "1",
+      "receitaDesc": "1"
+    },
+    {
+      "id": 95,
+      "nome": "António Pereira6",
+      "idadeMin": {
+        "idade": 1,
+        "tipo": "meses"
+      },
+      "tipo": "Inalação",
+      "funcoes": [
+        {
+          "funcao": "Tosse",
+          "check": true
+        },
         {
           "funcao": "Febre",
           "check": true
@@ -14,57 +213,6 @@
           "funcao": "Congestão Nasal",
           "check": true
         },
-        {
-          "funcao": "Dor de Cabeça",
-          "check": true
-        }
-      ],
-      "receitaDesc": "1111",
-      "aplicacao": "11111",
-      "observacoes": "1231"
-    },
-    {
-      "id": 80,
-      "nome": "fuuuuuuuuu",
-      "idadeMin": 1,
-      "tipo": "Inalação",
-      "funcoes": [
-        {
-          "funcao": "Tosse",
-          "check": true
-        }
-      ],
-      "receitaDesc": "qwwqe",
-      "aplicacao": "qweqe"
-    },
-    {
-      "id": 81,
-      "nome": "fu2",
-      "idadeMin": 21,
-      "tipo": "Inalação",
-      "funcoes": [
-        {
-          "funcao": "Febre",
-          "check": true
-        },
-        {
-          "funcao": "Dor de Cabeça",
-          "check": true
-        },
-        {
-          "funcao": "Dor de Barriga",
-          "check": true
-        }
-      ],
-      "receitaDesc": "awewq",
-      "aplicacao": "qweq"
-    },
-    {
-      "id": 82,
-      "nome": "Uma nova receita a serio",
-      "idadeMin": 1,
-      "tipo": "Difusão",
-      "funcoes": [
         {
           "funcao": "Dor de Cabeça",
           "check": true
@@ -80,65 +228,23 @@
         {
           "funcao": "Dores Menstruais",
           "check": true
-        }
-      ],
-      "receitaDesc": "mete-se uma cena no coiso e uma coisa na situação",
-      "aplicacao": "aplica-se como se deve aplicar oh animal xD"
-    },
-    {
-      "id": 83,
-      "nome": "Outra receita das boas ",
-      "idadeMin": 18,
-      "tipo": "Atópico",
-      "funcoes": [
-        {
-          "funcao": "Dor Muscular",
-          "check": true
-        }
-      ],
-      "receitaDesc": "Asas de gambuzino com pelos de saguin",
-      "aplicacao": "aplica-se como se pode oh mano ! xD"
-    },
-    {
-      "id": 84,
-      "nome": "António Pereira",
-      "idadeMin": 25,
-      "tipo": "Difusão",
-      "funcoes": [
-        {
-          "funcao": "Febre",
-          "check": true
         },
         {
-          "funcao": "Dor Muscular",
-          "check": true
-        }
-      ],
-      "receitaDesc": "123",
-      "aplicacao": "+654"
-    },
-    {
-      "id": 85,
-      "nome": "António Pereira",
-      "idadeMin": 654,
-      "tipo": "Difusão",
-      "funcoes": [
-        {
-          "funcao": "Dor de Cabeça",
-          "check": true
-        },
-        {
-          "funcao": "Dor Muscular",
+          "funcao": "Insónias",
           "check": true
         },
         {
           "funcao": "Irritação de Pele",
           "check": true
+        },
+        {
+          "funcao": "q",
+          "check": true
         }
       ],
-      "receitaDesc": "654654",
-      "aplicacao": "844+984",
-      "observacoes": "233321"
+      "aplicacao": "1",
+      "observacoes": "1",
+      "receitaDesc": "1"
     }
   ],
   "funcoes": [
@@ -186,6 +292,11 @@
       "funcao": "Irritação de Pele",
       "check": false,
       "id": 9
+    },
+    {
+      "funcao": "q",
+      "check": false,
+      "id": 10
     }
   ],
   "users": [

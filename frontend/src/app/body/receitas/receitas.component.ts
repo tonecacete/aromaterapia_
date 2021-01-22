@@ -1,11 +1,10 @@
 import { Component, DoCheck, ElementRef, Input, OnChanges, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { jsPDF } from "jspdf";
-import { catchError, retry } from 'rxjs/operators';
 import { Receita } from './receita/models/receita.model';
 import { BackendService } from './services/backend.service';
-import { CriarReceitaService } from './services/criar-receita.service';
-
+import { ReceitasService } from './services/receitas.service';
+declare var $: any;
 @Component({
   selector: 'app-receitas',
   templateUrl: './receitas.component.html',
@@ -18,7 +17,6 @@ export class ReceitasComponent implements OnInit, OnChanges, DoCheck {
   @ViewChild('receitasHtml') receitasHtml: ElementRef;
   receitas;
   receita: Receita;
-  data_load = false;
   filter = false;
   funcoes;
   message_search;
@@ -27,28 +25,29 @@ export class ReceitasComponent implements OnInit, OnChanges, DoCheck {
   receita_delete;
   filtersLoaded: Promise<boolean>;
   receitasFiltred;
-
-
+  verReceitaOnGoing = false;
+  novaReceitaOnGoing = false;
+  editReceitaOnGoing = false;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private receitasService: CriarReceitaService,
+    private receitasService: ReceitasService,
     private backendService: BackendService
   ) { }
 
   ngOnInit() {
-    this.data_load = false;
-    this.backendService.getReceitas().subscribe((data: any[]) => {
-      this.receitas = data;
-      this.data_load = true;
-      this.receitasService.setReceitas(this.receitas);
-      this.filtersLoaded = Promise.resolve(true);
-    })
+    if(!this.receitas){
+      this.backendService.getReceitas().subscribe((data: any[]) => {
+        this.receitas = data;
+        this.receitasService.setReceitas(this.receitas);
+        this.filtersLoaded = Promise.resolve(true);
+      })
+    }
+
     this.backendService.getFuncoes().subscribe((data: any[]) => {
       this.funcoes = data;
     })
-    this.receitas = this.receitasService.getReceitas();
   }
 
   ngOnChanges() {
@@ -56,7 +55,6 @@ export class ReceitasComponent implements OnInit, OnChanges, DoCheck {
   }
 
   ngDoCheck() {
-
   }
 
   apagarReceita() {
@@ -64,6 +62,11 @@ export class ReceitasComponent implements OnInit, OnChanges, DoCheck {
     this.receitas = this.receitas.filter(rec => rec.id !== this.id_delete);
     this.openModalDelete.nativeElement.click();
   }
+  
+  editarReceita(){
+    this.editReceitaOnGoing = true;
+  }
+
   setIdToDelete(id,receita) {
     this.id_delete = id;
     this.receita_delete = receita;
@@ -79,6 +82,7 @@ export class ReceitasComponent implements OnInit, OnChanges, DoCheck {
 
     if ((tipo == "Todas" || tipo == "") && (funcao == "Todas" || funcao == "")) {
       this.receitas = this.receitasService.getReceitas();
+      this.filter = false;
     } else if ((tipo == "Todas" || tipo == "") && (funcao !== "Todas" && funcao !== "")) {
       for (let fu of this.receitas) {
         if (fu.funcoes.find(z => z.funcao === funcao)) {
@@ -125,7 +129,7 @@ export class ReceitasComponent implements OnInit, OnChanges, DoCheck {
       doc.setFontSize(12);
       doc.text('Idade Minima', 20, 35);
       doc.setFont("helvetica", "normal");
-      doc.text(pdf.idadeMin.toString(), 30, 40);
+      doc.text(pdf.idadeMin.idade.toString() + " " + pdf.idadeMin.tipo.toString() , 30, 40);
       doc.setFont("helvetica", "bold");
       doc.text('Tipo', 20, 50);
       doc.setFont("helvetica", "normal");
@@ -134,8 +138,6 @@ export class ReceitasComponent implements OnInit, OnChanges, DoCheck {
       doc.text('Funções', 20, 65);
       doc.setFont("helvetica", "normal");
       let i = 70
-      for (let f of pdf.funcoes) {
-      }
       for (let x = 0; x < pdf.funcoes.length; x++) {
         doc.text(pdf.funcoes[x].funcao, 30, i);
         if (x !== pdf.funcoes.length - 1) {
@@ -159,12 +161,43 @@ export class ReceitasComponent implements OnInit, OnChanges, DoCheck {
     doc.text('Do you like that?', 20, 140);
     doc.save('Test.pdf');
   }
+
   goToReceita(event,id){
     let idEl = event.srcElement.id
-    if (idEl !== "openModalDelete" && idEl !== "iconDelete") {
+    if (idEl == "goToReceitaDiv" ||
+        idEl == "goToReceitaButton" || 
+        idEl == "goToReceitaIcon"  || 
+        (idEl !== "openModalDelete" && 
+          idEl !== "iconDelete" &&
+          idEl !== "editReceitaButton" &&
+          idEl !== "editReceitaIcon"
+          )) {
       //this.router.navigate(['/receitas'], { relativeTo: this.route });
-      this.router.navigate(['/receita',id], { relativeTo: this.route });
+      this.verReceitaOnGoing = true;
+      console.log(this.receita);
     }
+    this.receita = this.receitas.find(x => x.id === id);
+    this.receitasService.setReceita(this.receita);
+  }
+
+  backToTop(){
+    document.body.scrollTop = document.documentElement.scrollTop = 0;
+  }
+
+  novaReceita(){
+    this.novaReceitaOnGoing = true;
+  }
+
+  fecharVerReceita(){
+    this.verReceitaOnGoing = false;
+  }
+
+  fecharEditReceita(){
+    this.editReceitaOnGoing = false;
+  }
+
+  fecharNovaReceita(){
+    this.novaReceitaOnGoing = false;
   }
 
 }

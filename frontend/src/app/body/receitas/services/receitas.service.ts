@@ -6,11 +6,16 @@ import { Receita } from '../receita/models/receita.model';
 @Injectable({
   providedIn: 'root'
 })
-export class CriarReceitaService {
+export class ReceitasService {
   //private id = 0;
   private receitas: Receita[];
+  private receita: Receita;
 
   constructor() { }
+
+  setReceita(receita){
+    this.receita = receita;
+  }
 
   setReceitas(receitas) {
     this.receitas = receitas;
@@ -23,6 +28,12 @@ export class CriarReceitaService {
     return of(temp).pipe(delay(300));
   } */
 
+  getReceita(){
+    let temp = this.receita;
+    //this.clearData();
+    return temp;
+  }
+
   getReceitas(){
     let temp = this.receitas;
     //this.clearData();
@@ -30,7 +41,7 @@ export class CriarReceitaService {
   }
 
   clearData() {
-    //this.id = undefined;
+    this.receita = undefined;
     this.receitas = undefined;
   }
 

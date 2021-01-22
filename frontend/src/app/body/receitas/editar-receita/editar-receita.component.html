@@ -12,11 +12,21 @@
             <label for="nome" class="font-weight-bold">Nome</label>
             <input type="text" class="form-control" id="nome" [(ngModel)]="nome">
           </div>
-          <div class="form-group col-md-2">
+          <div class="form-group col-md-1">
             <label for="idadeMin" class="font-weight-bold">Idade</label>
-            <input type="number" class="form-control" id="idadeMin" [(ngModel)]="idadeMin">
+            <input type="number" class="form-control" id="idadeMin" [(ngModel)]="idade">
           </div>
-          <div class="form-group col-md-4">
+          <div class="col-sm-2 form-check form-check-inline">
+            <div class="form-check form-check-inline" id="anosRadio">
+              <input class="form-check-input" type="radio" name="exampleRadios" id="anos" value="anos" #anos [(ngModel)]="idade_opt" checked>
+              <label class="form-check-label" for="anos">anos</label>
+            </div>
+            <div class="form-check form-check-inline" id="mesesRadio">
+              <input class="form-check-input" type="radio" name="exampleRadios" id="meses" value="meses" [(ngModel)]="idade_opt" #meses>
+              <label class="form-check-label" for="anos">meses</label>
+            </div>
+          </div>
+          <div class="form-group col-md-2">
             <label for="tipo" class="font-weight-bold">Tipo</label>
             <select id="tipo" class="form-control" [(ngModel)]="tipo">
               <option selected>Inalação</option>
@@ -59,8 +69,8 @@
         <div class="row">
           <div class="col-md-auto">
             <button type="button" class="btn btn-outline-success" id="openModalEdit" #openModalEdit data-toggle="modal" data-target="#edit-modal">Guardar</button>
-            <button type="button" routerLink="../../receita/{{id}}" routerLinkActive="active" class="btn btn-outline-danger margin-l-5px">Cancelar</button>
-            <button type="button" routerLink="/receitas" routerLinkActive="active" type="button" class="btn btn-outline-secondary margin-l-5px">Voltar</button>
+            <button type="button" class="btn btn-outline-danger margin-l-5px">Cancelar</button>
+            <button type="button" type="button" class="btn btn-outline-secondary margin-l-5px" (click)="fecharEditReceita()">Voltar</button>
           </div>
         </div>
       <!-- </form> id="openModalSave" #openModalSave data-toggle="modal" data-target="#save-modal"  -->

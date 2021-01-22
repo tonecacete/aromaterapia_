@@ -1,8 +1,8 @@
 import { Funcao } from './../receita/models/funcao.model';
 import { Receita } from '../receita/models/receita.model';
-import { Component, ElementRef, Input, OnChanges, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnChanges, OnInit, Output, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
-import { CriarReceitaService } from '../services/criar-receita.service';
+import { ReceitasService } from '../services/receitas.service';
 import { BackendService } from '../services/backend.service';
 
 @Component({
@@ -11,11 +11,14 @@ import { BackendService } from '../services/backend.service';
   styleUrls: ['./criar-receita.component.scss']
 })
 export class CriarReceitaComponent implements OnInit, OnChanges {
+  @Output() novaReceitaFechada = new EventEmitter<boolean>();
   @ViewChild('openModalCriar') openModalCriar: ElementRef;
   @Input() receita: Receita;
   receitas: any;
   nome: string;
-  idadeMin: number;
+  idadeMin: {};
+  idade: number;
+  idade_opt: string;
   tipo: string;
   funcao: Funcao;
   receitaDesc: string;
@@ -28,7 +31,7 @@ export class CriarReceitaComponent implements OnInit, OnChanges {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private receitasService: CriarReceitaService,
+    private receitasService: ReceitasService,
     private backendService: BackendService
   ) { }
 
@@ -52,6 +55,8 @@ export class CriarReceitaComponent implements OnInit, OnChanges {
       let fu = new Funcao(f.funcao, f.check)
       func.push(fu);
     }
+    this.idadeMin = { idade: this.idade, tipo: this.idade_opt}
+
     this.receita = new Receita(
       0,
       this.nome,
@@ -69,8 +74,6 @@ export class CriarReceitaComponent implements OnInit, OnChanges {
     this.receitasService.setReceitas(this.receitas);
     this.backendService.addReceita(this.receita);
     this.openModalCriar.nativeElement.click();
-    this.router.navigate(['/receitas'], { relativeTo: this.route });
-
   }
 
   setFuncao(event) {
@@ -94,6 +97,10 @@ export class CriarReceitaComponent implements OnInit, OnChanges {
       this.funcao = undefined;
     }
     this.addFuncao();
+  }
+
+  fecharNovaJanela(){
+    this.novaReceitaFechada.emit(true);
   }
 
 }

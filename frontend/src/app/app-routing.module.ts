@@ -8,9 +8,9 @@ import { ReceitaComponent } from './body/receitas/receita/receita.component';
 
 const routes: Routes = [
   { path: 'receitas', component: ReceitasComponent },
-  { path: 'receita/:id', component: ReceitaComponent },
+ /*  { path: 'receita/:id', component: ReceitaComponent },
   { path: 'criarReceita', component: CriarReceitaComponent },
-  { path: 'editarReceita/:id', component: EditarReceitaComponent },
+  { path: 'editarReceita/:id', component: EditarReceitaComponent }, */
   { path: 'login', component: LoginComponent },
   {path: '', redirectTo: '/receitas', pathMatch: 'full'}
 ];
